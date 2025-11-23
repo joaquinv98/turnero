@@ -91,11 +91,11 @@
                 </div>
                 <div class="form-group">
                     <label>SMTP User (Opcional)</label>
-                    <input type="text" name="smtp_user" value="notificacionesngestion@neatech.ar">
+                    <input type="text" name="smtp_user" value="ejemplo@neatech.ar">
                 </div>
                 <div class="form-group">
                     <label>SMTP Pass (Opcional)</label>
-                    <input type="password" name="smtp_pass" value="diorq^p?ClW_NX2q">
+                    <input type="password" name="smtp_pass" value="changeme">
                 </div>
 
                 <div style="display: flex; gap: 10px;">
@@ -153,3 +153,4 @@
     </script>
 </body>
 </html>
+
