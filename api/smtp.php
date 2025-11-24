@@ -15,10 +15,10 @@ class SimpleSMTP {
         $stmt = $pdo->query("SELECT * FROM settings");
         $settings = $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
         
-        $this->host = $settings['smtp_host'] ?? 'mail.neatech.ar';
+        $this->host = $settings['smtp_host'] ?? '';
         $this->port = $settings['smtp_port'] ?? 587;
-        $this->username = $settings['smtp_user'] ?? 'notificacionesngestion@neatech.ar';
-        $this->password = $settings['smtp_pass'] ?? 'diorq^p?ClW_NX2q';
+        $this->username = $settings['smtp_user'] ?? '';
+        $this->password = $settings['smtp_pass'] ?? '';
     }
 
     public function send($to, $subject, $body, $ics = null) {
@@ -62,6 +62,7 @@ class SimpleSMTP {
         // Connect via TCP first
         $this->socket = fsockopen("tcp://{$this->host}", $this->port, $errno, $errstr, 10);
         if (!$this->socket) throw new Exception("Connection failed: $errstr");
+        stream_set_timeout($this->socket, 10);
         
         $this->getResponse();
         $this->sendCommand("EHLO {$this->host}");

@@ -1,11 +1,14 @@
 <?php
 session_start();
 require_once '../config/db.php';
+require_once 'logger.php';
 
 if (!isset($_SESSION['user_id'])) exit;
 
 $start = $_GET['start'] ?? date('Y-m-d');
 $end = $_GET['end'] ?? date('Y-m-d');
+
+log_debug("Export API called", ['start' => $start, 'end' => $end]);
 
 header('Content-Type: text/csv');
 header('Content-Disposition: attachment; filename="reporte_turnos.csv"');

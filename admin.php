@@ -229,7 +229,7 @@ $view = $_GET['view'] ?? 'active';
         Desarrollado por <a href="https://neatech.ar" target="_blank" style="color: var(--primary); text-decoration: none; font-weight: bold;">NEATECH.AR</a>
     </div>
 
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/main.js?v=<?php echo time(); ?>"></script>
     <script>
         let currentPricing = [];
         const currentView = '<?php echo $view; ?>';
@@ -677,6 +677,9 @@ $view = $_GET['view'] ?? 'active';
                 });
 
                 if (result.success) {
+                    if (result.warning) {
+                        alert("Turno iniciado con ADVERTENCIA:\n" + result.warning);
+                    }
                     document.getElementById('newTurnForm').reset();
                     updateFormInputs();
                     loadTurns();

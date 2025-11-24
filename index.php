@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/main.js?v=1"></script>
     <script>
         document.getElementById('loginForm').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -37,7 +37,7 @@
             const result = await apiRequest('api/auth.php?action=login', 'POST', { username, password });
             
             if (result.success) {
-                window.location.href = result.redirect;
+                window.location.href = result.redirect || 'admin.php';
             } else {
                 const errorDiv = document.getElementById('errorMsg');
                 errorDiv.textContent = result.message;

@@ -138,6 +138,15 @@ try {
         move_uploaded_file($_FILES['favicon']['tmp_name'], $uploadDir . 'favicon.ico');
     }
 
+    // 7. Self-Destruct
+    // Delete setup files for security
+    if (file_exists('../setup.php')) unlink('../setup.php');
+    // We can't delete the running script immediately without issues on some servers, 
+    // but we can try. Or better, register a shutdown function.
+    register_shutdown_function(function() {
+        if (file_exists(__FILE__)) unlink(__FILE__);
+    });
+
     echo json_encode(['success' => true]);
 
 } catch (Exception $e) {
